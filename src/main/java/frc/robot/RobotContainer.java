@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.Commands.IntakeCommands;
+import frc.robot.subsystems.LauncherSubsystem;
+import frc.robot.Commands.LauncherCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -27,15 +27,14 @@ import edu.wpi.first.wpilibj2.command.Commands;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final LauncherSubsystem launcherSubsystem = new LauncherSubsystem();
   private final CommandXboxController operatorController = new CommandXboxController(Constants.operatorXboxControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-      operatorController.x().whileTrue(IntakeCommands.intake(intakeSubsystem));
-      operatorController.y().whileTrue(IntakeCommands.outtake(intakeSubsystem));
+      operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
   }
         /**
    * Use this method to define your button->command mappings. Buttons can be created by

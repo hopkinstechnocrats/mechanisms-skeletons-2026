@@ -15,7 +15,7 @@ package frc.robot;
 public final class Constants {
    
     public static final int operatorXboxControllerPort = 1;
-    public static final int intakeMotorCANID = 2;//CHANGE THIS
-    public static final double intakeSpeed = .1;
-    public static final double outtakeSpeed = .1;
+    public static final int launcherMotorCANID = 3;//CHANGE THIS
+    public static final double launchSpeed = .1;
+
 }
