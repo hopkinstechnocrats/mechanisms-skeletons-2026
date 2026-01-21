@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.DriveSubsystem;
+
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.DriveCommands;
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -26,7 +26,6 @@ import frc.robot.DriveCommands;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   private final CommandXboxController driveController = new CommandXboxController(Constants.driverXboxControllerPort);
   
@@ -36,14 +35,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    driveSubsystem.setDefaultCommand(
-      new RunCommand(
-        () -> {
-          driveSubsystem.drive(Constants.maxMotorOutput*driveController.getLeftY(),
-          Constants.maxMotorOutput*driveController.getRightY());
-        }
-        , driveSubsystem)
-        );}
+
+        };
         /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -67,7 +60,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new SequentialCommandGroup(
-      DriveCommands.drive(driveSubsystem, -.8, -.8).withTimeout(1.5)
+     
     );
   }
 }
