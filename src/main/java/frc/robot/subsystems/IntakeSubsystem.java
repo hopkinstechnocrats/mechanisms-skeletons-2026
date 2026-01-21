@@ -1,18 +1,17 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 
     public class IntakeSubsystem extends SubsystemBase{
-        WPI_TalonSRX intakeMotor;
+        TalonFX intakeMotor;
         public IntakeSubsystem(){
-            intakeMotor = new WPI_TalonSRX(Constants.intakeMotorCANID); //Need to getCANID
-            intakeMotor.configFactoryDefault();
-            intakeMotor.setNeutralMode(NeutralMode.Brake);
+            intakeMotor = new TalonFX(Constants.intakeMotorCANID); //Need to getCANID
+            intakeMotor.setNeutralMode(NeutralModeValue.Brake);
         }
     
         public void intake(double intakeSpeed){
