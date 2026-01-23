@@ -13,5 +13,14 @@ public class ClimberCommands extends Command {
                 wheel.climber(Constants.climberSpeed);
             },
         wheel);
+        
+    }
+    public static Command unclimber(ClimberSubsystem wheel) {
+        return Commands.run(
+            () -> {
+                wheel.climber(Constants.reverseClimberSpeed);
+            },
+        wheel);
+        
     }
 }

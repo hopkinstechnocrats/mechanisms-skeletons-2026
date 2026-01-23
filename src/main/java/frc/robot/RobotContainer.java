@@ -34,6 +34,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+      operatorController.rightTrigger().whileTrue(ClimberCommands.climber(ClimberSubsystem));
+      operatorController.leftTrigger().whileTrue(ClimberCommands.unclimber(ClimberSubsystem));
   }
         /**
    * Use this method to define your button->command mappings. Buttons can be created by
