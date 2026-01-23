@@ -13,7 +13,7 @@ public class TurretSubsystem extends SubsystemBase {
         turretMotor.setNeutralMode(NeutralModeValue.Brake);
     }
 
-    public void moveArm(double turretSpeed){
+    public void turret(double turretSpeed){
         turretMotor.set(turretSpeed);
     
     }
