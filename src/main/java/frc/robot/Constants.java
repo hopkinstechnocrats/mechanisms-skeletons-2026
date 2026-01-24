@@ -25,9 +25,8 @@ public final class Constants {
     public static final int operatorXboxControllerPort = 1;
     public static int hopperFeederCANID = 9;
      public static int hopperConveyorCANID = 10;
-     public double conveyorSpeed = -0.1;
+     public static double conveyorSpeed = -0.1;
      public double feederSpeed = -0.1;
-     public double backwardsFeederSpeed = 0.1;
         /* 
     Sets the maximum power we can drive at. 1.0 is 100%. 
     The number is negative because xbox controllers are down-right positve

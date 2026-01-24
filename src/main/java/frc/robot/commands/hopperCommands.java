@@ -3,27 +3,28 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.subsystems.hopperSubsystem;
+import frc.robot.Constants;
 
 public class hopperCommands {
     public static Command hopperConveyorSpin(hopperSubsystem ConveyorSpin){
         return Commands.run(
                 () -> {
-                    hopperSubsystem.hopperConveyorSpeed();
+                    hopperSubsystem.hopperConveyorSpin(Constants.conveyorSpeed);
                 },
-            hopperSubsystem);
+            ConveyorSpin);
     }
-    public static Command hopperFeederForwards(EndEffectorSubsystem endEffector){
+    public static Command hopperFeederForwards(hopperSubsystem FeederForwards){
         return Commands.run(
                 () -> {
-                    endEffector.moveToSetpoint();
+                    hopperSubsystem.hopperFeederSpinForwards();
                 },
-            endEffector);
+            FeederForwards);
     }
-     public static Command hopperFeederForwards(EndEffectorSubsystem endEffector){
+     public static Command hopperFeederBackwards(hopperSubsystem FeederBackwards){
         return Commands.run(
                 () -> {
-                    endEffector.moveToSetpoint();
+                    hopperSubsystem.hopperFeederSpinBackwards();
                 },
-            endEffector);
+            FeederBackwards);
     }
 }

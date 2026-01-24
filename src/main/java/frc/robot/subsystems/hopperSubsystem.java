@@ -1,4 +1,4 @@
-```package frc.robot.subsystems;
+package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -11,10 +11,10 @@ import frc.robot.Constants;
 
 
 
-public class HopperSubsystem extends SubsystemBase{
+public class hopperSubsystem extends SubsystemBase{
     TalonFX hopperFeederMotor;
-    TalonFX hopperConveyorMotor;
-    public HopperSubsystem(){
+    static TalonFX hopperConveyorMotor;
+    public hopperSubsystem(){
         hopperFeederMotor = new TalonFX(Constants.hopperFeederCANID);
         hopperConveyorMotor = new TalonFX(Constants.hopperConveyorCANID);
 
@@ -22,14 +22,14 @@ public class HopperSubsystem extends SubsystemBase{
         hopperConveyorMotor.setNeutralMode(NeutralModeValue.Brake);
 
     }
-    public void hopperConveyorSpin(double conveyorSpeed){
+    public static void hopperConveyorSpin(double conveyorSpeed){
             hopperConveyorMotor.set(conveyorSpeed);
     }
     public void hopperFeederSpinForwards(double feederSpeed){
             hopperConveyorMotor.set(feederSpeed);
     }
-    public void hopperFeederSpinBackwards(double backwardsFeederSpeed){
-        hopperConveyorMotor.set(backwardsFeederSpeed);
+    public void hopperFeederSpinBackwards(double feederSpeed){
+        hopperConveyorMotor.set(-feederSpeed);
     }
     }
 
