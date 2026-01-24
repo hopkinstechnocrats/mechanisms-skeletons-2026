@@ -14,4 +14,11 @@ public class LauncherCommands extends Command {
             },
         wheel);
     }
+     public static Command launcherBreak(LauncherSubsystem wheel){
+        return Commands.run(
+            () -> {
+                wheel.launcher(Constants.launcherBrakeSpeed);
+            },
+            wheel);
+    }
 }

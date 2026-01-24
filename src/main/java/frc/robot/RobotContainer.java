@@ -35,6 +35,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
       operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
+      operatorController.a().whileFalse(LauncherCommands.launcherBreak(launcherSubsystem));
   }
         /**
    * Use this method to define your button->command mappings. Buttons can be created by
