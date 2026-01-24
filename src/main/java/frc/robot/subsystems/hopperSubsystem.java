@@ -12,7 +12,7 @@ import frc.robot.Constants;
 
 
 public class hopperSubsystem extends SubsystemBase{
-    TalonFX hopperFeederMotor;
+    static TalonFX hopperFeederMotor;
     static TalonFX hopperConveyorMotor;
     public hopperSubsystem(){
         hopperFeederMotor = new TalonFX(Constants.hopperFeederCANID);
@@ -25,10 +25,10 @@ public class hopperSubsystem extends SubsystemBase{
     public static void hopperConveyorSpin(double conveyorSpeed){
             hopperConveyorMotor.set(conveyorSpeed);
     }
-    public void hopperFeederSpinForwards(double feederSpeed){
+    public static void hopperFeederSpinForwards(double feederSpeed){
             hopperConveyorMotor.set(feederSpeed);
     }
-    public void hopperFeederSpinBackwards(double feederSpeed){
+    public static void hopperFeederSpinBackwards(double feederSpeed){
         hopperConveyorMotor.set(-feederSpeed);
     }
     }

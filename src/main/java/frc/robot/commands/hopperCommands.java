@@ -16,14 +16,14 @@ public class hopperCommands {
     public static Command hopperFeederForwards(hopperSubsystem FeederForwards){
         return Commands.run(
                 () -> {
-                    hopperSubsystem.hopperFeederSpinForwards();
+                    hopperSubsystem.hopperFeederSpinForwards(Constants.feederSpeed);
                 },
             FeederForwards);
     }
      public static Command hopperFeederBackwards(hopperSubsystem FeederBackwards){
         return Commands.run(
                 () -> {
-                    hopperSubsystem.hopperFeederSpinBackwards();
+                    hopperSubsystem.hopperFeederSpinBackwards(Constants.feederSpeed);
                 },
             FeederBackwards);
     }
