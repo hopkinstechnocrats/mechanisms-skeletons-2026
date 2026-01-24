@@ -34,7 +34,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-      operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
+       launcherSubsystem.setDefaultCommand(
+            new RunCommand(
+                    () -> {
+                    launcherSubsystem.launcher(0);
+                  }, launcherSubsystem)
+    );
   }
         /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -43,7 +48,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-  
+    operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
+    operatorController.b().whileTrue(LauncherCommands.reverseLauncher(launcherSubsystem));
 
     //write joystick driver here
     

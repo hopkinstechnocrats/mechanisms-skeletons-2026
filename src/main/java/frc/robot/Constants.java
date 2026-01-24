@@ -17,5 +17,5 @@ public final class Constants {
     public static final int operatorXboxControllerPort = 1;
     public static final int launcherMotorCANID = 3;//CHANGE THIS
     public static final double launchSpeed = .1;
-
+    public static final double reverseLaunchSpeed = -.1;
 }

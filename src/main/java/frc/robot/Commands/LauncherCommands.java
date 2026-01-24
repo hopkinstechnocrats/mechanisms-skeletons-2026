@@ -14,4 +14,11 @@ public class LauncherCommands extends Command {
             },
         wheel);
     }
+    public static Command reverseLauncher(LauncherSubsystem wheel) {
+        return Commands.run(
+            () -> {
+                wheel.launcher(Constants.reverseLaunchSpeed);
+            },
+        wheel);
+    }
 }
