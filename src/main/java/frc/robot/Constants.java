@@ -16,7 +16,7 @@ public final class Constants {
     //TODO: update all variables ending in CAN
 
     public static final int operatorXboxControllerPort = 1;
-    public static final int climberMotorCANID = 5;//Change this
+    public static final int climberMotorCANID = 11;//Change this
     public static final double climberSpeed = .1;
     public static final double reverseClimberSpeed = -.1;
 }
