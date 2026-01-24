@@ -15,7 +15,7 @@ package frc.robot;
 public final class Constants {
     //TODO: update all variables ending in CANID
     public static final int operatorXboxControllerPort = 1;
-    public static final int turretMotorCANID = 4;//change later
+    public static final int turretMotorCANID = 11;//change later
     public static final double turretSpeed = .1;
-    
+    public static final double reverseTurretSpeed = -.1;
 }

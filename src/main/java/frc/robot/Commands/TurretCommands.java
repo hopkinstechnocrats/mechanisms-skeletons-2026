@@ -14,4 +14,11 @@ public class TurretCommands extends Command {
             },
         wheel);
     }
+    public static Command reverseTurret(TurretSubsystem wheel) {
+        return Commands.run(
+            () -> {
+                wheel.turret(Constants.reverseTurretSpeed);
+            },
+        wheel);
+    }
 }

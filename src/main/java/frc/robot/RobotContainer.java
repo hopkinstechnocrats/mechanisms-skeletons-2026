@@ -32,7 +32,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-      operatorController.b().whileTrue(TurretCommands.turret(turretSubsystem));
+      turretSubsystem.setDefaultCommand(
+          new RunCommand(
+                  () -> {
+                  turretSubsystem.turret(0);
+                }, turretSubsystem)
+      );
     }
         /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -41,7 +46,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
+    operatorController.rightBumper().whileTrue(TurretCommands.turret(turretSubsystem));
+    operatorController.leftBumper().whileTrue(TurretCommands.reverseTurret(turretSubsystem));
     //write joystick driver here
     
     //winchCode
