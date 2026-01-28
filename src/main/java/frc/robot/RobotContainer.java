@@ -34,8 +34,13 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-      operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
-      operatorController.a().whileFalse(LauncherCommands.launcherBreak(launcherSubsystem));
+      launcherSubsystem.setDefaultCommand(
+            new RunCommand(
+                    () -> {
+                    launcherSubsystem.launcher(Constants.launcherBrakeSpeed);
+                  }, launcherSubsystem)
+    );
+      
   }
         /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -45,7 +50,10 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
   
+    operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
+    operatorController.a().whileFalse(LauncherCommands.launcherBreak(launcherSubsystem));
 
+      
     //write joystick driver here
     
     //winchCode
