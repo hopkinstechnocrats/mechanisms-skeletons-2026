@@ -19,4 +19,8 @@ public final class Constants {
     public static final double intakeSpeed = .1;
     public static final double outtakeSpeed = -.1;
     public static final double intakeBreakSpeed = 0.0;
+
+    public static final double k_intakeP = 1;
+    public static final double k_intakeI = 0;
+    public static final double k_intakeD = 0;
 }
