@@ -51,7 +51,6 @@ public class RobotContainer {
   private void configureButtonBindings() {
   
     operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
-    operatorController.a().whileFalse(LauncherCommands.launcherBreak(launcherSubsystem));
 
       
     //write joystick driver here

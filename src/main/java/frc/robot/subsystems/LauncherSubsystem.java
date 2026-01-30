@@ -28,7 +28,11 @@ import frc.robot.Constants;
         }
         
         public void launcher(double launcherSpeed){
-          m_launcherMotor.setControl(m_launcherRequest.withVelocity(10));
+          m_launcherMotor.setControl(m_launcherRequest.withVelocity(Constants.launchSpeed));
+        }
+
+        public void launcherBrake(double launcherSpeed){
+          m_launcherMotor.setControl(m_launcherRequest.withVelocity(Constants.launcherBrakeSpeed));
         }
     }
 
