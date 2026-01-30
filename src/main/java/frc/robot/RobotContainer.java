@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.LauncherSubsystem;
-import frc.robot.Commands.LauncherCommands;
+// import frc.robot.Commands.LauncherCommands;
+import frc.robot.LauncherCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -37,9 +38,9 @@ public class RobotContainer {
       launcherSubsystem.setDefaultCommand(
             new RunCommand(
                     () -> {
-                    launcherSubsystem.launcher(Constants.launcherBrakeSpeed);
-                  }, launcherSubsystem)
-    );
+                    launcherSubsystem.launcherBrake(Constants.launcherBrakeSpeed);
+                  }, launcherSubsystem
+      ));
       
   }
         /**
