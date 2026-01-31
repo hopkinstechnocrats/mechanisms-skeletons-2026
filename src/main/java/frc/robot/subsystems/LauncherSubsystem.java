@@ -17,11 +17,7 @@ import frc.robot.Constants;
     public class LauncherSubsystem extends SubsystemBase{
       NetworkTableInstance inst;
       NetworkTable table;
-
-      DoubleEntry launcherP;
-      DoubleEntry launcherI;
-      DoubleEntry launcherD;      
-      
+      DoubleEntry PIDDifference; 
       TalonFX m_launcherMotor;
         Slot0Configs m_launcherConfig;
         MotorOutputConfigs m_launcherOutputConfig;
@@ -35,8 +31,18 @@ import frc.robot.Constants;
             m_launcherConfig.kP = Constants.k_launcherP;
             m_launcherConfig.kI = Constants.k_launcherI;
             m_launcherConfig.kD = Constants.k_launcherD;
-              m_launcherMotor.getConfigurator().apply(m_launcherConfig);
+            m_launcherMotor.getConfigurator().apply(m_launcherConfig);
+         
+
+          
+            PIDDifference = table.getDoubleTopic("PID Difference").getEntry(0);
+  
         }
+        @Override
+    public void periodic(){
+      PIDDifference.get(m_launcherMotor.getClosedLoopError().getValueAsDouble()); 
+      //difference between desired state and real state as a double
+    }
         
         public void launcher(double launcherSpeed){
           m_launcherMotor.setControl(m_launcherRequest.withVelocity(Constants.launchSpeed));
