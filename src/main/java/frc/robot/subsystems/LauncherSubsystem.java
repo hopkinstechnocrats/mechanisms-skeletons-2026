@@ -33,7 +33,7 @@ import frc.robot.Constants;
             m_launcherConfig.kP = Constants.k_launcherP;
             m_launcherConfig.kI = Constants.k_launcherI;
             m_launcherConfig.kD = Constants.k_launcherD;
-			//m_launcherConfig.kV = Constants.feedForward;
+			m_launcherConfig.kV = Constants.feedForward;
             m_launcherMotor.getConfigurator().apply(m_launcherConfig);
          
 
