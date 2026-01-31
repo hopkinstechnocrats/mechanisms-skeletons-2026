@@ -13,12 +13,14 @@ import frc.robot.Constants;
 
     public class IntakeSubsystem extends SubsystemBase{
         TalonFX m_intakeMotor;
+        TalonFX m_intakeDeployMotor;
         Slot0Configs m_intakeConfig;
         MotorOutputConfigs m_intakeOutputConfig;
         final VelocityVoltage m_intakeRequest = new VelocityVoltage(0).withSlot(0);
 
         public IntakeSubsystem(){
             m_intakeMotor = new TalonFX(Constants.intakeMotorCANID); //Need to getCANID
+            m_intakeDeployMotor = new TalonFX(Constants.intakeDeployMotorCANID); //Also needs CANID
             Slot0Configs m_intakeConfig = new Slot0Configs();
             m_intakeOutputConfig = new MotorOutputConfigs();
             m_intakeConfig.kP = Constants.k_intakeP;
