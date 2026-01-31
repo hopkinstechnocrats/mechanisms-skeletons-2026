@@ -35,7 +35,7 @@ public class RobotContainer {
       launcherSubsystem.setDefaultCommand(
             new RunCommand(
                     () -> {
-                    launcherSubsystem.launcherBrake(Constants.launcherBrakeSpeed);
+                    launcherSubsystem.launcherBrake(Constants.launcherBrakeSpeedRPS);
                   }, launcherSubsystem
       ));
       

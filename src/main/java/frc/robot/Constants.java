@@ -16,9 +16,10 @@ public final class Constants {
    
     public static final int operatorXboxControllerPort = 1;
     public static final int launcherMotorCANID = 11;//TODO: Change CANID
-    public static final double launchSpeed = 10;
-    public static final double launcherBrakeSpeed = 0;
+    public static final double launchSpeedRPS = 10; //rotations per second
+    public static final double launcherBrakeSpeedRPS = 0;
     public static final double k_launcherP = 0.3;
     public static final double k_launcherI = 0.1;
     public static final double k_launcherD = 0;
+    public static final double feedForward = 0; //
 }

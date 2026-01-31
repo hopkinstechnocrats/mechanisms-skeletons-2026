@@ -18,6 +18,7 @@ import frc.robot.Constants;
       	NetworkTableInstance inst;
       	NetworkTable table;
       	DoubleEntry PIDDifference; 
+		DoubleEntry MotorVoltage; 
       	TalonFX m_launcherMotor;
    		Slot0Configs m_launcherConfig;
         MotorOutputConfigs m_launcherOutputConfig;
@@ -25,17 +26,18 @@ import frc.robot.Constants;
         
 		public LauncherSubsystem(){
             inst = NetworkTableInstance.getDefault();
-            table = inst.getTable("PIDs");
+            table = inst.getTable("Launcher Info");
             m_launcherMotor = new TalonFX(Constants.launcherMotorCANID); //Need to getCANID
             m_launcherConfig = new Slot0Configs();
             m_launcherOutputConfig = new MotorOutputConfigs();
             m_launcherConfig.kP = Constants.k_launcherP;
             m_launcherConfig.kI = Constants.k_launcherI;
             m_launcherConfig.kD = Constants.k_launcherD;
+			//m_launcherConfig.kV = Constants.feedForward;
             m_launcherMotor.getConfigurator().apply(m_launcherConfig);
          
 
-          
+			MotorVoltage = table.getDoubleTopic("Motor Volated").getEntry(0);
             PIDDifference = table.getDoubleTopic("PID Difference").getEntry(0);
   
         }
@@ -45,14 +47,15 @@ import frc.robot.Constants;
     	public void periodic(){
       		PIDDifference.set(m_launcherMotor.getClosedLoopError().getValueAsDouble()); 
      		//difference between desired state and real state as a double
+			MotorVoltage.set(m_launcherMotor.getMotorVoltage().getValueAsDouble());
     	}
         
         public void launcher(double launcherSpeed){
-          m_launcherMotor.setControl(m_launcherRequest.withVelocity(Constants.launchSpeed));
+        	m_launcherMotor.setControl(m_launcherRequest.withVelocity(Constants.launchSpeedRPS));
         }
 
         public void launcherBrake(double launcherSpeed){
-          m_launcherMotor.setControl(m_launcherRequest.withVelocity(Constants.launcherBrakeSpeed));
+        	m_launcherMotor.setControl(m_launcherRequest.withVelocity(Constants.launcherBrakeSpeedRPS));
         }
     }
 

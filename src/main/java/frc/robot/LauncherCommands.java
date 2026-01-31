@@ -9,14 +9,14 @@ public class LauncherCommands extends Command {
     public static Command launcher(LauncherSubsystem wheel) {
         return Commands.run(
             () -> {
-                wheel.launcher(Constants.launchSpeed);
+                wheel.launcher(Constants.launchSpeedRPS);
             },
         wheel);
     }
      public static Command launcherBreak(LauncherSubsystem wheel){
         return Commands.run(
             () -> {
-                wheel.launcherBrake(0);
+                wheel.launcherBrake(Constants.launcherBrakeSpeedRPS);
             },
             wheel);
     }
