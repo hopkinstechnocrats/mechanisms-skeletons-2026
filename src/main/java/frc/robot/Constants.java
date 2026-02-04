@@ -24,4 +24,9 @@ public final class Constants {
     public static final double k_intakeP = 1;
     public static final double k_intakeI = 0;
     public static final double k_intakeD = 0;
+    public static final double k_intakeDeployP = 1;
+    public static final double k_intakeDeployI = 0;
+    public static final double k_intakeDeployD = 0;
+    public static final double k_intakeDeployV = 0;
+    public static final double k_intakeDeployS = 0;
 }
