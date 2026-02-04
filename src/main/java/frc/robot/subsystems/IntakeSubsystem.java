@@ -7,6 +7,7 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -44,6 +45,15 @@ import frc.robot.Constants;
             m_intakeDeployMotor.setNeutralMode(NeutralModeValue.Brake);
             m_intakeDeployMotor.getConfigurator().apply(m_intakeDeployOutputConfig);
             m_intakeMotor.getConfigurator().apply(m_intakeConfig);
+
+ final TrapezoidProfile m_intakeDeployProfile = new TrapezoidProfile(
+   new TrapezoidProfile.Constraints(80, 160)
+ );           
+
+TrapezoidProfile.State m_Deploygoal = new TrapezoidProfile.State(200, 0);
+TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
+
+
         }
     
         
