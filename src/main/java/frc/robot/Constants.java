@@ -15,12 +15,17 @@ package frc.robot;
 public final class Constants {
     //TODO: update all variables ending in CANID
 
-   
-
     public static final int operatorXboxControllerPort = 1;
-    public static final int feederMotorCANID = 11;//change this
-    public static final double feederSpeed = .1;
-    public static final double reverseFeederSpeed = -.1;
 
+    public static final class FeederConstants{
+        public static final int feederMotorCANID = 11;//change this
+        public static final double feederSpeedRPS = .1;
+        public static final double reverseFeederSpeedRPS = -.1;
+        public static final double feederBreakSpeedRPS = 0;
+        public static final double k_feederP = 0; 
+        public static final double k_feederI = 0;
+        public static final double k_feederD = 0;
+        public static final double feederFeedForward = 0; 
+    }
     
 }
