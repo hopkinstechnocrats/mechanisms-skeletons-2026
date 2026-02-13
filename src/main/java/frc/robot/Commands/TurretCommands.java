@@ -1,4 +1,4 @@
-package frc.robot.Commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -10,14 +10,14 @@ public class TurretCommands extends Command {
     public static Command turret(TurretSubsystem wheel) {
         return Commands.run(
             () -> {
-                wheel.turret(Constants.turretSpeed);
+                wheel.turret(Constants.TurretConstants.k_turretSpeedRPS);
             },
         wheel);
     }
     public static Command reverseTurret(TurretSubsystem wheel) {
         return Commands.run(
             () -> {
-                wheel.turret(Constants.reverseTurretSpeed);
+                wheel.turret(Constants.TurretConstants.k_reverseTurretSpeedRPS);
             },
         wheel);
     }
