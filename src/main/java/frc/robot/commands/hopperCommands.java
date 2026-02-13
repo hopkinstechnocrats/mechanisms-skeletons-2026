@@ -2,29 +2,23 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.subsystems.hopperSubsystem;
 import frc.robot.Constants;
+import frc.robot.subsystems.HopperSubsystem;
 
-public class hopperCommands {
-    public static Command hopperConveyorSpin(hopperSubsystem ConveyorSpin){
+public class HopperCommands extends Command {
+       
+    public static Command hopper(HopperSubsystem wheel) {
         return Commands.run(
-                () -> {
-                    hopperSubsystem.hopperConveyorSpin(Constants.conveyorSpeed);
-                },
-            ConveyorSpin);
+            () -> {
+                wheel.hopper(Constants.HopperConstants.k_hopperSpeedRPS);
+            },
+        wheel);
     }
-    public static Command hopperFeederForwards(hopperSubsystem FeederForwards){
+    public static Command reverseHopper(HopperSubsystem wheel) {
         return Commands.run(
-                () -> {
-                    hopperSubsystem.hopperFeederSpinForwards(Constants.feederSpeed);
-                },
-            FeederForwards);
-    }
-     public static Command hopperFeederBackwards(hopperSubsystem FeederBackwards){
-        return Commands.run(
-                () -> {
-                    hopperSubsystem.hopperFeederSpinBackwards(Constants.feederSpeed);
-                },
-            FeederBackwards);
+            () -> {
+                wheel.hopper(Constants.HopperConstants.k_reverseHopperSpeedRPS);
+            },
+        wheel);
     }
 }
