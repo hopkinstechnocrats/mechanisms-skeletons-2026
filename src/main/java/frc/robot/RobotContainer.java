@@ -26,7 +26,7 @@ public class RobotContainer {
 		hopperSubsystem.setDefaultCommand(
             new RunCommand(
                     () -> {
-                    hopperSubsystem.hopperBrake(Constants.HopperConstants.k_hopperBrakeSpeedRPS);
+                    hopperSubsystem.hopperBrake();
                   }, hopperSubsystem
       ));
 
