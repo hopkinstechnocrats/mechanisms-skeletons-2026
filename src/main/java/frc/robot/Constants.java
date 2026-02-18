@@ -52,6 +52,15 @@ public final class Constants {
     */
     public static final double maxMotorOutput = -0.8;
 
-    //butter intake
+     public static final class FeederConstants{
+        public static final int feederMotorCANID = 11;//change this
+        public static final double feederSpeedRPS = .1;
+        public static final double reverseFeederSpeedRPS = -.1;
+        public static final double feederBreakSpeedRPS = 0;
+        public static final double k_feederP = 0; 
+        public static final double k_feederI = 0;
+        public static final double k_feederD = 0;
+        public static final double feederFeedForward = 0; 
+    }
     
 }
