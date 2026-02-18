@@ -4,70 +4,48 @@
 
 package frc.robot;
 
-
-import java.security.interfaces.XECPublicKey;
-
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.DriveSubsystem;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.DriveCommands;
-/**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
- */
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+//import frc.robot.swerve.Gyro;
+//import frc.robot.swerve.Swervedrive;
+//import frc.robot.commands.DriveCommands;
+import frc.robot.commands.IntakeCommands;
+//import frc.robot.commands.TeleopDrive;
+import frc.robot.subsystems.IntakeSubsystem;
+
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
-  private final CommandXboxController driveController = new CommandXboxController(Constants.driverXboxControllerPort);
-  
-  private final CommandXboxController operatorController = new CommandXboxController(Constants.operatorXboxControllerPort);
+    //Swervedrive m_swerve = new Swervedrive();
+    IntakeSubsystem m_intake = new IntakeSubsystem();
+    CommandXboxController driveController = new CommandXboxController(Constants.ControlConstants.k_driverPort);
+    CommandXboxController operatorController = new CommandXboxController(Constants.k_operatorPort);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-    driveSubsystem.setDefaultCommand(
-      new RunCommand(
-        () -> {
-          driveSubsystem.drive(Constants.maxMotorOutput*driveController.getLeftY(),
-          Constants.maxMotorOutput*driveController.getRightY());
-        }
-        , driveSubsystem)
-        );}
-        /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-    
-    //write joystick driver here
-    
-    //winchCode
+    public RobotContainer() {
+        /*m_swerve.setDefaultCommand(
+            new TeleopDrive(m_swerve, () -> driveController.getLeftY(), () -> driveController.getLeftX(), () -> driveController.getRightX()) 
+        );*/
 
-  }
- 
-  
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return new SequentialCommandGroup(
-      DriveCommands.drive(driveSubsystem, -.8, -.8).withTimeout(1.5)
-    );
-  }
+        m_intake.setDefaultCommand(
+            new RunCommand(
+                    () -> {
+                    m_intake.intake(Constants.k_intakeBrakeSpeedRPS);
+                  }, m_intake)
+        );
+        configureBindings();
+          
+    }
+
+    private void configureBindings() {
+        operatorController.a().whileTrue(IntakeCommands.intake(m_intake));
+        operatorController.a().whileTrue(IntakeCommands.deployBob(m_intake)); //TODO check if works
+        operatorController.b().whileTrue(IntakeCommands.outtake(m_intake));
+        operatorController.y().whileTrue(IntakeCommands.deploy(m_intake));
+        operatorController.x().whileTrue(IntakeCommands.undeploy(m_intake));
+    }
+
+    public Command getAutonomousCommand() {
+        return Commands.print("No autonomous command configured");
+    }
 }
