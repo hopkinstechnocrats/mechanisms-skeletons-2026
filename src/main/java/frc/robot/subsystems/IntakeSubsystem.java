@@ -37,7 +37,7 @@ import frc.robot.Constants;
 
         public IntakeSubsystem(){
             inst = NetworkTableInstance.getDefault();
-            table = inst.getTable("Launcher Info");
+            table = inst.getTable("Intake Info");
             m_intakeMotor = new TalonFX(Constants.intakeMotorCANID); //TODO:Need to getCANID
             m_intakeDeployMotor = new TalonFX(Constants.intakeDeployMotorCANID); //TODO:Also needs CANID
             m_intakeDeployMotorFollower = new TalonFX(Constants.intakeDeployMotorFollowerCANID); //TODO:Also needs CANID
@@ -53,6 +53,10 @@ import frc.robot.Constants;
             m_intakeDeployConfig.kD = Constants.k_intakeDeployD;
             m_intakeDeployConfig.kS = Constants.k_intakeDeployS;
             m_intakeDeployConfig.kV = Constants.k_intakeDeployV;
+            PIDDifference = table.getDoubleTopic("bla").getEntry(0);
+            PIDFollowerDifference = table.getDoubleTopic("bla").getEntry(0);
+            MotorVoltage = table.getDoubleTopic("bla").getEntry(0);
+            MotorFollowerVoltage = table.getDoubleTopic("bla").getEntry(0);
 
             m_intakeOutputConfig.NeutralMode = NeutralModeValue.Brake;
             m_intakeDeployOutputConfig.NeutralMode = NeutralModeValue.Brake;

@@ -68,8 +68,8 @@ public final class Constants{
     }
 
         //TODO: test all values from line 70-88
-        public static final int intakeMotorCANID = 11; 
-        public static final int intakeDeployMotorCANID = 12;
+        public static final int intakeMotorCANID = 12; 
+        public static final int intakeDeployMotorCANID = 11;
         public static final int intakeDeployMotorFollowerCANID = 13;
 
         public static final double k_intakeP = 1;
@@ -83,7 +83,8 @@ public final class Constants{
         public static final double k_intakeDeployV = 0;
 
         public static final double k_IntakePosition = 0;
-        public static final double k_intakeSpeedRPS = 20;
+        public static final double k_intakeSpeedRPS = .5;
+        public static final double k_reverseIntakeSpeedRPS = -0.5;
         public static final double k_intakeBrakeSpeedRPS = 0;
         public static final double k_intakeSetpointDeploy = 0.25;
         public static final double k_intakeSetpointBob = 0.2;
