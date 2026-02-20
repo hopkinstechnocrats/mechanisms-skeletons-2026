@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.controls.PositionVoltage;
-import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -43,6 +42,8 @@ public class TurretSubsystem extends SubsystemBase {
         m_turretConfig.kD = Constants.TurretConstants.k_turretD;
         m_turretConfig.kS = Constants.TurretConstants.k_turretS;
         m_turretConfig.kV = Constants.TurretConstants.k_turretV;
+        TurretPIDDifference = table.getDoubleTopic("Turret PID Difference").getEntry(0);
+        TurretMotorVoltage = table.getDoubleTopic("Turret Motor Voltage").getEntry(0);
 
         final TrapezoidProfile m_turretProfile = new TrapezoidProfile(
         new TrapezoidProfile.Constraints(80, 160));
