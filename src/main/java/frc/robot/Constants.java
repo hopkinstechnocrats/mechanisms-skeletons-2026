@@ -69,8 +69,8 @@ public final class Constants{
 //TODO: test and change all numbers
     public static final class TurretConstants{
         public static final int k_turretMotorCANID = 12;//change later
-        public static final double k_turretSpeedRPS = .1;
-        public static final double k_reverseTurretSpeedRPS = -.1;
+        public static final double k_turretSpeedRPS = 1;
+        public static final double k_reverseTurretSpeedRPS = -1;
         public static final double k_turretBrakeSpeedRPS = 0;
 
         public static final double k_turretP = 1;
