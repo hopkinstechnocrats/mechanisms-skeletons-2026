@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.DriverStation;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.Slot1Configs;
+import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 
@@ -58,7 +60,7 @@ import frc.robot.TunableNumber;
 			m_launcherInvertedConfig.kV = Constants.LauncherConstants.k_launcherFeedForward;
             m_launcherOutputConfig.NeutralMode = NeutralModeValue.Brake;
             m_launcherInvertedOutputConfig.NeutralMode = NeutralModeValue.Brake; 
-            m_launcherOutputConfig.Inverted = InvertedValue.Clockwise_Positive;
+            m_launcherOutputConfig.Inverted = InvertedValue.CounterClockwise_Positive;
             m_launcherInvertedOutputConfig.Inverted = InvertedValue.CounterClockwise_Positive;
 
             m_launcherMotor.getConfigurator().apply(m_launcherOutputConfig);
@@ -115,6 +117,6 @@ import frc.robot.TunableNumber;
         
         public void launcher(double launcherSpeed){
         	m_launcherMotor.setControl(m_launcherRequest.withVelocity(launcherSpeed));
-        	m_launcherMotorSecond.setControl(m_launcherRequestSecond.withVelocity(-launcherSpeed));
+            m_launcherMotorSecond.setControl(new Follower(m_launcherMotor.getDeviceID(), MotorAlignmentValue.Opposed));
         }
     }
