@@ -38,12 +38,12 @@ import frc.robot.Constants;
         //final PositionVoltage m_request = new PositionVoltage(0).withSlot(0);
 
         public IntakeSubsystem(){
-            /*inst = NetworkTableInstance.getDefault();
-            table = inst.getTable("Intake Info");*/
+            inst = NetworkTableInstance.getDefault();
+            table = inst.getTable("Intake Info");
             m_intakeMotor = new TalonFX(Constants.intakeMotorCANID); //TODO:Need to getCANID
             /*m_intakeDeployMotor = new TalonFX(Constants.intakeDeployMotorCANID); //TODO:Also needs CANID
             m_intakeDeployMotorFollower = new TalonFX(Constants.intakeDeployMotorFollowerCANID);*/ //TODO:Also needs CANID
-            Slot0Configs m_intakeConfig = new Slot0Configs();
+            m_intakeConfig = new Slot0Configs();
             //Slot1Configs m_intakeDeployConfig = new Slot1Configs();
             m_intakeOutputConfig = new MotorOutputConfigs();
             m_intakeConfig.kP = Constants.k_intakeP;
@@ -59,12 +59,11 @@ import frc.robot.Constants;
             PIDFollowerDifference = table.getDoubleTopic("bla").getEntry(0);
             MotorVoltage = table.getDoubleTopic("bla").getEntry(0);
             MotorFollowerVoltage = table.getDoubleTopic("bla").getEntry(0);*/
+            
             IntakeMotorVoltage = table.getDoubleTopic("Intake Motor Voltage").getEntry(0);
             IntakePIDDifference = table.getDoubleTopic("Intake PID Difference").getEntry(0);
 
-            m_intakeOutputConfig.NeutralMode = NeutralModeValue.Brake;
             //m_intakeDeployOutputConfig.NeutralMode = NeutralModeValue.Brake;
-            m_intakeMotor.setNeutralMode(NeutralModeValue.Brake);
             /*m_intakeDeployMotor.setNeutralMode(NeutralModeValue.Brake);
             m_intakeDeployMotor.getConfigurator().apply(m_intakeDeployOutputConfig);
             m_intakeDeployMotorFollower.setNeutralMode(NeutralModeValue.Brake);
@@ -98,6 +97,10 @@ import frc.robot.Constants;
         
     public void intake(double intakeSpeed){
         m_intakeMotor.setControl(m_intakeRequest.withVelocity(intakeSpeed));
+    }
+
+    public void intakeBrake(){
+        m_intakeMotor.setControl(m_intakeRequest.withVelocity(Constants.k_intakeBrakeSpeedRPS));
     }
     /*public void intakeDeploy(){
         m_intakeDeployMotor.setControl(m_request.withPosition(m_request.Position).withVelocity(m_request.Velocity));

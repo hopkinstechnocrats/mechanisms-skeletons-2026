@@ -18,7 +18,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class RobotContainer {
 
     //Swervedrive m_swerve = new Swervedrive();
-    IntakeSubsystem m_intake = new IntakeSubsystem();
+    IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     //CommandXboxController driveController = new CommandXboxController(Constants.ControlConstants.k_driverPort);
     CommandXboxController operatorController = new CommandXboxController(Constants.k_operatorPort);
 
@@ -27,20 +27,21 @@ public class RobotContainer {
             new TeleopDrive(m_swerve, () -> driveController.getLeftY(), () -> driveController.getLeftX(), () -> driveController.getRightX()) 
         );*/
 
-        m_intake.setDefaultCommand(
-            new RunCommand(
+        intakeSubsystem.setDefaultCommand(
+             new RunCommand(
                     () -> {
-                    m_intake.intake(Constants.k_intakeBrakeSpeedRPS);
-                  }, m_intake)
-        );
+                    intakeSubsystem.intakeBrake();
+                  }, intakeSubsystem
+      ));
+
         configureBindings();
           
     }
 
     private void configureBindings() {
-        operatorController.a().whileTrue(IntakeCommands.intake(m_intake));
+        operatorController.a().whileTrue(IntakeCommands.intake(intakeSubsystem));
         //operatorController.a().whileTrue(IntakeCommands.deployBob(m_intake)); //TODO check if works
-        operatorController.b().whileTrue(IntakeCommands.outtake(m_intake));
+        operatorController.b().whileTrue(IntakeCommands.outtake(intakeSubsystem));
         /*operatorController.y().whileTrue(IntakeCommands.deploy(m_intake));
         operatorController.x().whileTrue(IntakeCommands.undeploy(m_intake));*/
     }
