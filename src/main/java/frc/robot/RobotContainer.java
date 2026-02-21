@@ -13,21 +13,21 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
-import frc.robot.subsystems.HopperSubsystem;
-import frc.robot.commands.HopperCommands;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.commands.IntakeCommands;
 
 public class RobotContainer {
 
     CommandXboxController driveController = new CommandXboxController(Constants.ControlConstants.k_driverPort);
-    private final HopperSubsystem hopperSubsystem = new HopperSubsystem();
+    private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final CommandXboxController operatorController = new CommandXboxController(Constants.ControlConstants.operatorXboxControllerPort);
 
     public RobotContainer() {
-		hopperSubsystem.setDefaultCommand(
+		intakeSubsystem.setDefaultCommand(
             new RunCommand(
                     () -> {
-                    hopperSubsystem.hopperBrake();
-                  }, hopperSubsystem
+                    intakeSubsystem.intakeBrake();
+                  }, intakeSubsystem
       ));
 
       configureButtonBindings();
@@ -43,8 +43,8 @@ public class RobotContainer {
    
 
     private void configureButtonBindings() {
-        operatorController.a().whileTrue(HopperCommands.hopper(hopperSubsystem));
-        operatorController.b().whileTrue(HopperCommands.reverseHopper(hopperSubsystem));
+        operatorController.a().whileTrue(IntakeCommands.intake(intakeSubsystem));
+        operatorController.b().whileTrue(IntakeCommands.reverseIntake(intakeSubsystem));
 
   }
 }
