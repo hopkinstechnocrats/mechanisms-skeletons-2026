@@ -80,7 +80,7 @@ public final class Constants{
         public static final double k_turretV = 0;
 
         public static final double k_turretPosition = 0;
-        public static final double k_turrretSetpoint = 0;
+        public static final double k_turrretSetpoint = 0.2;
     }
 
 

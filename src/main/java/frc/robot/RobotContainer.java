@@ -41,9 +41,9 @@ public class RobotContainer {
     private void configureBindings() {
         operatorController.rightBumper().whileTrue(TurretCommands.turret(turretSubsystem));
         operatorController.leftBumper().whileTrue(TurretCommands.reverseTurret(turretSubsystem));
-        
+        operatorController.y().whileTrue(TurretCommands.position1(m_turret, Constants.TurretConstants.k_turrretSetpoint));
     }
-
+    TurretSubsystem m_turret = new TurretSubsystem();
     public Command getAutonomousCommand() {
         return Commands.print("No autonomous command configured");
     }

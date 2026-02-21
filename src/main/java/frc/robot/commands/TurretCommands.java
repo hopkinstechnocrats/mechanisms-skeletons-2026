@@ -21,4 +21,11 @@ public class TurretCommands extends Command {
             },
         wheel);
     }
+    public static Command position1(TurretSubsystem m_TurretSubsystem, double Setpoint){
+        return Commands.run(
+            () -> {
+            m_TurretSubsystem.turretSP1();
+            }
+        );
+    }
 }

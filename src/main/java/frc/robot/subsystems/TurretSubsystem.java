@@ -98,4 +98,9 @@ public class TurretSubsystem extends SubsystemBase {
     public void turret(double turretSpeed){
         m_turretMotor.setControl(m_turretRequest.withPosition(turretSpeed));
     }
+    final PositionVoltage m_request = new PositionVoltage(0).withSlot(0);
+        public void turretSP1(){
+        m_turretMotor.setControl(m_request.withPosition(m_request.Position).withVelocity(m_request.Velocity));
+    }
+
 }
