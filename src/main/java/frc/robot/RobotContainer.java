@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.LauncherCommands;
+import frc.robot.subsystems.LauncherSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 /**
@@ -22,12 +24,17 @@ import edu.wpi.first.wpilibj2.command.Commands;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  
+      LauncherSubsystem launcherSubsystem = new LauncherSubsystem();
   private final CommandXboxController operatorController = new CommandXboxController(Constants.ControlConstants.k_operatorPort);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    
+
     // Configure the button bindings
-    configureButtonBindings();
+    configureButtonBindings(
+
+
+    );
   }
         /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -36,7 +43,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
+     operatorController.a().whileTrue(LauncherCommands.launcher(launcherSubsystem));
     //write joystick driver here
     
     //winchCode
