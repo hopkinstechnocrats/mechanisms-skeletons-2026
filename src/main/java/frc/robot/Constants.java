@@ -67,14 +67,14 @@ public final class Constants{
         public static final int k_gyroID = 15;
     }
 
-    public static final class HopperConstants{
-        public static final int k_hopperMotorCANID = 12;
-        public static final double k_hopperSpeedRPS = 5;
-        public static final double k_reverseHopperSpeedRPS = -5;   
-        public static final double k_hopperBrakeSpeedRPS = 0;
-        public static final double k_hopperP = 0.3; 
-        public static final double k_hopperI = 0;
-        public static final double k_hopperD = 0;
+    public static final class LauncherConstants{
+        public static final int k_launcherMotorCANID = 12;
+        public static final double k_launcherSpeedRPS = 0.5;
+        public static final double k_reverseLauncherSpeedRPS = -0.5;   
+        public static final double k_launcherBrakeSpeedRPS = 0;
+        public static final double k_launcherP = 0.3; 
+        public static final double k_launcherI = 0;
+        public static final double k_launcherD = 0;
         public static final double k_feedForward = 0.1; 
     }
 
