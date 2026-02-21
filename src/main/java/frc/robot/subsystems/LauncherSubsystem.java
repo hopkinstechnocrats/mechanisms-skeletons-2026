@@ -55,16 +55,12 @@ import frc.robot.TunableNumber;
             m_launcherInvertedConfig.kD = Constants.LauncherConstants.k_launcherD;
 			m_launcherInvertedConfig.kV = Constants.LauncherConstants.k_launcherFeedForward;
             m_launcherOutputConfig.NeutralMode = NeutralModeValue.Brake;
-            m_launcherInvertedOutputConfig.NeutralMode = NeutralModeValue.Brake;
+            m_launcherInvertedOutputConfig.NeutralMode = NeutralModeValue.Brake; 
             m_launcherOutputConfig.Inverted = InvertedValue.Clockwise_Positive;
             m_launcherInvertedOutputConfig.Inverted = InvertedValue.CounterClockwise_Positive;
 
-            m_launcherMotor.setNeutralMode(NeutralModeValue.Brake);
-            m_launcherMotorSecond.setNeutralMode(NeutralModeValue.Brake);
             m_launcherMotor.getConfigurator().apply(m_launcherOutputConfig);
-            m_launcherMotorSecond.setNeutralMode(NeutralModeValue.Brake);
             m_launcherMotorSecond.getConfigurator().apply(m_launcherOutputConfig);
-            m_launcherMotor.getConfigurator().apply(m_launcherConfig);
 
 			LauncherMotorVoltage = table.getDoubleTopic("Motor Volatge").getEntry(0);
 			LauncherMotorVoltageSecond = table.getDoubleTopic("Motor Volatge Second").getEntry(0);
@@ -86,7 +82,7 @@ import frc.robot.TunableNumber;
      		//difference between desired state and real state as a double
 			LauncherMotorVoltage.set(m_launcherMotor.getMotorVoltage().getValueAsDouble());
 			LauncherMotorVoltageSecond.set(m_launcherMotorSecond.getMotorVoltage().getValueAsDouble());
-            if(DriverStation.isTestEnabled() && kPInputLauncher.hasChanged(hashCode())){
+         /*    if(DriverStation.isTestEnabled() && kPInputLauncher.hasChanged(hashCode())){
                 m_launcherConfig.kP = kPInputLauncher.getAsDouble();
                 m_launcherMotor.getConfigurator().apply(m_launcherConfig);
                 m_launcherInvertedConfig.kP = kPInputLauncher.getAsDouble();
@@ -112,7 +108,7 @@ import frc.robot.TunableNumber;
                 m_launcherMotor.getConfigurator().apply(m_launcherConfig);
                 m_launcherInvertedConfig.kV = kVInputLauncher.getAsDouble();
                 m_launcherMotorSecond.getConfigurator().apply(m_launcherInvertedConfig);
-            }
+            }*/
     	}
         
         public void launcher(double launcherSpeed){
