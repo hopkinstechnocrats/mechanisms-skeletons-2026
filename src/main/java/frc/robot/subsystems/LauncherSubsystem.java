@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
+import com.ctre.phoenix6.configs.Slot1Configs;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
@@ -28,7 +29,7 @@ import frc.robot.TunableNumber;
       	TalonFX m_launcherMotor;
         TalonFX m_launcherMotorSecond;
    		Slot0Configs m_launcherConfig;
-        Slot0Configs m_launcherInvertedConfig;
+        Slot1Configs m_launcherInvertedConfig;
         MotorOutputConfigs m_launcherOutputConfig;
         MotorOutputConfigs m_launcherInvertedOutputConfig;
         TunableNumber kPInputLauncher;
@@ -43,7 +44,7 @@ import frc.robot.TunableNumber;
             table = inst.getTable("Launcher Info");
             m_launcherMotor = new TalonFX(Constants.LauncherConstants.k_launcherMotorCANID); //Need to getCANID
             m_launcherMotorSecond = new TalonFX(Constants.LauncherConstants.k_launcherMotorSecondCANID); //need CANID
-            m_launcherInvertedConfig = new Slot0Configs();
+            m_launcherInvertedConfig = new Slot1Configs();
             m_launcherConfig = new Slot0Configs();
             m_launcherOutputConfig = new MotorOutputConfigs();
             m_launcherInvertedOutputConfig = new MotorOutputConfigs();
@@ -83,7 +84,7 @@ import frc.robot.TunableNumber;
      		//difference between desired state and real state as a double
 			LauncherMotorVoltage.set(m_launcherMotor.getMotorVoltage().getValueAsDouble());
 			LauncherMotorVoltageSecond.set(m_launcherMotorSecond.getMotorVoltage().getValueAsDouble());
-         /*    if(DriverStation.isTestEnabled() && kPInputLauncher.hasChanged(hashCode())){
+            if(DriverStation.isTestEnabled() && kPInputLauncher.hasChanged(hashCode())){
                 m_launcherConfig.kP = kPInputLauncher.getAsDouble();
                 m_launcherMotor.getConfigurator().apply(m_launcherConfig);
                 m_launcherInvertedConfig.kP = kPInputLauncher.getAsDouble();
@@ -109,7 +110,7 @@ import frc.robot.TunableNumber;
                 m_launcherMotor.getConfigurator().apply(m_launcherConfig);
                 m_launcherInvertedConfig.kV = kVInputLauncher.getAsDouble();
                 m_launcherMotorSecond.getConfigurator().apply(m_launcherInvertedConfig);
-            }*/
+            }
     	}
         
         public void launcher(double launcherSpeed){
