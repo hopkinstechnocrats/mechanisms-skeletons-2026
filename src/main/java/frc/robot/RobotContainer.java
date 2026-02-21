@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
@@ -31,20 +30,17 @@ public class RobotContainer {
       ));
 
       configureButtonBindings();
-    }
-
-
-      
+    } 
 
     public Command getAutonomousCommand() {
         return Commands.print("No autonomous command configured");
     }
 
-   
-
     private void configureButtonBindings() {
-        operatorController.a().whileTrue(IntakeCommands.intake(intakeSubsystem));
-        operatorController.b().whileTrue(IntakeCommands.reverseIntake(intakeSubsystem));
-
-  }
+      operatorController.a().whileTrue(IntakeCommands.intake(intakeSubsystem));
+      operatorController.b().whileTrue(IntakeCommands.outtake(intakeSubsystem));
+      operatorController.y().whileTrue(IntakeCommands.deploy(intakeSubsystem));
+      operatorController.x().whileTrue(IntakeCommands.undeploy(intakeSubsystem));
+      //operatorController.a().whileTrue(IntakeCommands.deployBob(intakeSubsystem)); //TODO check if works
+    }
 }

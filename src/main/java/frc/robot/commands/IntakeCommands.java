@@ -7,18 +7,43 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeCommands extends Command {
        
-    public static Command intake(IntakeSubsystem wheel) {
+    public static Command intake(IntakeSubsystem intake) {
         return Commands.run(
             () -> {
-                wheel.intake(Constants.IntakeConstants.k_intakeSpeedRPS);
+                intake.intake(Constants.IntakeConstants.k_intakeSpeedRPS);
             },
-        wheel);
+        intake);
     }
-    public static Command reverseIntake(IntakeSubsystem wheel) {
+
+    public static Command outtake(IntakeSubsystem outtake) {
         return Commands.run(
             () -> {
-                wheel.intake(Constants.IntakeConstants.k_reverseIntakeSpeedRPS);
+                outtake.intake(Constants.IntakeConstants.k_reverseIntakeSpeedRPS);
             },
-        wheel);
+        outtake);
+    }
+
+    public static Command deploy(IntakeSubsystem deploy) {
+        return Commands.run(
+            () -> {
+                deploy.intakeDeploy();
+            },
+        deploy);
+    }
+
+    public static Command deployBob(IntakeSubsystem deployBob) {
+        return Commands.run(
+            () -> {
+                deployBob.intakeBob();
+            },
+        deployBob);
+    }
+
+    public static Command undeploy(IntakeSubsystem undeploy) {
+        return Commands.run(
+            () -> {
+                undeploy.intakeUndeploy();
+            },
+        undeploy);
     }
 }
