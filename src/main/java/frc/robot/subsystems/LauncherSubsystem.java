@@ -36,6 +36,7 @@ import frc.robot.TunableNumber;
         TunableNumber kDInputLauncher;
         TunableNumber kVInputLauncher;
         final VelocityVoltage m_launcherRequest = new VelocityVoltage(0).withSlot(0);
+        final VelocityVoltage m_launcherRequestSecond = new VelocityVoltage(0).withSlot(1);
         
 		public LauncherSubsystem(){
             inst = NetworkTableInstance.getDefault();
@@ -113,6 +114,6 @@ import frc.robot.TunableNumber;
         
         public void launcher(double launcherSpeed){
         	m_launcherMotor.setControl(m_launcherRequest.withVelocity(launcherSpeed));
-        	m_launcherMotorSecond.setControl(m_launcherRequest.withVelocity(-launcherSpeed));
+        	m_launcherMotorSecond.setControl(m_launcherRequestSecond.withVelocity(-launcherSpeed));
         }
     }
