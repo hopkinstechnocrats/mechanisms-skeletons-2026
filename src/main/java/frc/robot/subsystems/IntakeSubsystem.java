@@ -2,14 +2,14 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
-import com.ctre.phoenix6.configs.Slot1Configs;
-import com.ctre.phoenix6.controls.PositionVoltage;
+//import com.ctre.phoenix6.configs.Slot1Configs;
+//import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.GravityTypeValue;
+//import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
+//import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.networktables.DoubleEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -22,32 +22,34 @@ import frc.robot.Constants;
         NetworkTableInstance inst;
       	NetworkTable table; 
         TalonFX m_intakeMotor;
-        TalonFX m_intakeDeployMotor;
+        /*TalonFX m_intakeDeployMotor;
         TalonFX m_intakeDeployMotorFollower;
         DoubleEntry PIDDifference; 
         DoubleEntry PIDFollowerDifference; 
 		DoubleEntry MotorVoltage; 
-		DoubleEntry MotorFollowerVoltage;         
+		DoubleEntry MotorFollowerVoltage;*/
+        DoubleEntry IntakePIDDifference;
+        DoubleEntry IntakeMotorVoltage; //added these two because I realized there wasn't any PID stuff actually running through Intake      
         Slot0Configs m_intakeConfig;
-        Slot1Configs m_intakeDeployConfig;
+        //Slot1Configs m_intakeDeployConfig;
         MotorOutputConfigs m_intakeOutputConfig;
-        MotorOutputConfigs m_intakeDeployOutputConfig;
+        //MotorOutputConfigs m_intakeDeployOutputConfig;
         public final static VelocityVoltage m_intakeRequest = new VelocityVoltage(0).withSlot(0);
-        final PositionVoltage m_request = new PositionVoltage(0).withSlot(0);
+        //final PositionVoltage m_request = new PositionVoltage(0).withSlot(0);
 
         public IntakeSubsystem(){
-            inst = NetworkTableInstance.getDefault();
-            table = inst.getTable("Intake Info");
+            /*inst = NetworkTableInstance.getDefault();
+            table = inst.getTable("Intake Info");*/
             m_intakeMotor = new TalonFX(Constants.intakeMotorCANID); //TODO:Need to getCANID
-            m_intakeDeployMotor = new TalonFX(Constants.intakeDeployMotorCANID); //TODO:Also needs CANID
-            m_intakeDeployMotorFollower = new TalonFX(Constants.intakeDeployMotorFollowerCANID); //TODO:Also needs CANID
+            /*m_intakeDeployMotor = new TalonFX(Constants.intakeDeployMotorCANID); //TODO:Also needs CANID
+            m_intakeDeployMotorFollower = new TalonFX(Constants.intakeDeployMotorFollowerCANID);*/ //TODO:Also needs CANID
             Slot0Configs m_intakeConfig = new Slot0Configs();
-            Slot1Configs m_intakeDeployConfig = new Slot1Configs();
+            //Slot1Configs m_intakeDeployConfig = new Slot1Configs();
             m_intakeOutputConfig = new MotorOutputConfigs();
             m_intakeConfig.kP = Constants.k_intakeP;
             m_intakeConfig.kI = Constants.k_intakeI;
             m_intakeConfig.kD = Constants.k_intakeD;
-            m_intakeDeployOutputConfig = new MotorOutputConfigs();
+            /*m_intakeDeployOutputConfig = new MotorOutputConfigs();
             m_intakeDeployConfig.kP = Constants.k_intakeDeployP;
             m_intakeDeployConfig.kI = Constants.k_intakeDeployI;
             m_intakeDeployConfig.kD = Constants.k_intakeDeployD;
@@ -56,25 +58,27 @@ import frc.robot.Constants;
             PIDDifference = table.getDoubleTopic("bla").getEntry(0);
             PIDFollowerDifference = table.getDoubleTopic("bla").getEntry(0);
             MotorVoltage = table.getDoubleTopic("bla").getEntry(0);
-            MotorFollowerVoltage = table.getDoubleTopic("bla").getEntry(0);
+            MotorFollowerVoltage = table.getDoubleTopic("bla").getEntry(0);*/
+            IntakeMotorVoltage = table.getDoubleTopic("Intake Motor Voltage").getEntry(0);
+            IntakePIDDifference = table.getDoubleTopic("Intake PID Difference").getEntry(0);
 
             m_intakeOutputConfig.NeutralMode = NeutralModeValue.Brake;
-            m_intakeDeployOutputConfig.NeutralMode = NeutralModeValue.Brake;
+            //m_intakeDeployOutputConfig.NeutralMode = NeutralModeValue.Brake;
             m_intakeMotor.setNeutralMode(NeutralModeValue.Brake);
-            m_intakeDeployMotor.setNeutralMode(NeutralModeValue.Brake);
+            /*m_intakeDeployMotor.setNeutralMode(NeutralModeValue.Brake);
             m_intakeDeployMotor.getConfigurator().apply(m_intakeDeployOutputConfig);
             m_intakeDeployMotorFollower.setNeutralMode(NeutralModeValue.Brake);
-            m_intakeDeployMotorFollower.getConfigurator().apply(m_intakeDeployOutputConfig);
+            m_intakeDeployMotorFollower.getConfigurator().apply(m_intakeDeployOutputConfig);*/
             m_intakeMotor.getConfigurator().apply(m_intakeConfig);
 
-            final TrapezoidProfile m_intakeDeployProfile = new TrapezoidProfile(
+            /*final TrapezoidProfile m_intakeDeployProfile = new TrapezoidProfile(
             new TrapezoidProfile.Constraints(80, 160));
             TrapezoidProfile.State m_DeployGoal = new TrapezoidProfile.State(Constants.k_IntakePosition, 0);
             TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
             
             m_setpoint = m_intakeDeployProfile.calculate(0.020, m_setpoint, m_DeployGoal);
             m_request.Position = m_setpoint.position;
-            m_request.Velocity = m_setpoint.velocity;
+            m_request.Velocity = m_setpoint.velocity;*/
 
 
 
@@ -83,19 +87,21 @@ import frc.robot.Constants;
         }
     @Override
     public void periodic(){
-      		PIDDifference.set(m_intakeDeployMotor.getClosedLoopError().getValueAsDouble()); 
+      		/*PIDDifference.set(m_intakeDeployMotor.getClosedLoopError().getValueAsDouble()); 
       		PIDFollowerDifference.set(m_intakeDeployMotorFollower.getClosedLoopError().getValueAsDouble()); 
      		//difference between desired state and real state as a double
 			MotorVoltage.set(m_intakeDeployMotor.getMotorVoltage().getValueAsDouble());
-            MotorFollowerVoltage.set(m_intakeDeployMotorFollower.getMotorVoltage().getValueAsDouble());
+            MotorFollowerVoltage.set(m_intakeDeployMotorFollower.getMotorVoltage().getValueAsDouble());*/
+            IntakePIDDifference.set(m_intakeMotor.getClosedLoopError().getValueAsDouble());
+            IntakeMotorVoltage.set(m_intakeMotor.getMotorVoltage().getValueAsDouble()); 
     }
         
     public void intake(double intakeSpeed){
         m_intakeMotor.setControl(m_intakeRequest.withVelocity(intakeSpeed));
     }
-    public void intakeDeploy(){
+    /*public void intakeDeploy(){
         m_intakeDeployMotor.setControl(m_request.withPosition(m_request.Position).withVelocity(m_request.Velocity));
         m_intakeDeployMotorFollower.setControl(m_request.withPosition(-m_request.Position).withVelocity(-m_request.Velocity));
-    }
+    }*/
 
 }

@@ -1,19 +1,16 @@
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-
 public final class Constants{
 
-    public static final class SwerveConstants{
+    /*public static final class SwerveConstants{
         
         public static final int k_frontLeftDriveCANID = 3;
-        public static final int k_frontRightDriveCANID = 5;
+        public static final int k_frontRightDriveCANID = 11;//
         public static final int k_backLeftDriveCANID = 9;
         public static final int k_backRightDriveCANID = 7;
 
         public static final int k_frontLeftTurnCANID = 4;
-        public static final int k_frontRightTurnCANID = 6;
+        public static final int k_frontRightTurnCANID = 13;//
         public static final int k_backLeftTurnCANID = 10;
         public static final int k_backRightTurnCANID = 8;
 
@@ -55,40 +52,40 @@ public final class Constants{
         public static final double k_wheelCircumferenceMeters = 0.1016 * Math.PI;
 
         public static final Pose2d k_startPose = new Pose2d(0, 0, new Rotation2d(0));
-    }
+    }*/
  
     public static final class ControlConstants{
-        public static final double k_driveControllerDeadband = 0.1;
+        //public static final double k_driveControllerDeadband = 0.1;
         public static final double k_operatorControllerDeadband = 0.1;
-        public static final int k_driverPort = 0;
+        //public static final int k_driverPort = 0;
     }
     
-    public static final class GyroConstants{
+    /*public static final class GyroConstants{
         public static final int k_gyroID = 15;
-    }
+    }*/
 
         //TODO: test all values from line 70-88
         public static final int intakeMotorCANID = 12; 
-        public static final int intakeDeployMotorCANID = 11;
-        public static final int intakeDeployMotorFollowerCANID = 13;
+        //public static final int intakeDeployMotorCANID = 5;
+        //public static final int intakeDeployMotorFollowerCANID = 6;
 
         public static final double k_intakeP = 1;
         public static final double k_intakeI = 0;
         public static final double k_intakeD = 0;
 
-        public static final double k_intakeDeployP = 1;
+        /*public static final double k_intakeDeployP = 1;
         public static final double k_intakeDeployI = 0;
         public static final double k_intakeDeployD = 0;
         public static final double k_intakeDeployS = 0;
         public static final double k_intakeDeployV = 0;
 
-        public static final double k_IntakePosition = 0;
-        public static final double k_intakeSpeedRPS = .5;
-        public static final double k_reverseIntakeSpeedRPS = -0.5;
+        public static final double k_IntakePosition = 0;*/
+        public static final double k_intakeSpeedRPS = 1;
+        public static final double k_reverseIntakeSpeedRPS = -1;
         public static final double k_intakeBrakeSpeedRPS = 0;
-        public static final double k_intakeSetpointDeploy = 0.25;
+        /*public static final double k_intakeSetpointDeploy = 0.25;
         public static final double k_intakeSetpointBob = 0.2;
-        public static final double k_intakeSetpointRetract = 0;
+        public static final double k_intakeSetpointRetract = 0;*/
 
         public static final int k_operatorPort = 1;
     }

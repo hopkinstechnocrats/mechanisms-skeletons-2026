@@ -19,7 +19,7 @@ public class RobotContainer {
 
     //Swervedrive m_swerve = new Swervedrive();
     IntakeSubsystem m_intake = new IntakeSubsystem();
-    CommandXboxController driveController = new CommandXboxController(Constants.ControlConstants.k_driverPort);
+    //CommandXboxController driveController = new CommandXboxController(Constants.ControlConstants.k_driverPort);
     CommandXboxController operatorController = new CommandXboxController(Constants.k_operatorPort);
 
     public RobotContainer() {
@@ -39,10 +39,10 @@ public class RobotContainer {
 
     private void configureBindings() {
         operatorController.a().whileTrue(IntakeCommands.intake(m_intake));
-        operatorController.a().whileTrue(IntakeCommands.deployBob(m_intake)); //TODO check if works
+        //operatorController.a().whileTrue(IntakeCommands.deployBob(m_intake)); //TODO check if works
         operatorController.b().whileTrue(IntakeCommands.outtake(m_intake));
-        operatorController.y().whileTrue(IntakeCommands.deploy(m_intake));
-        operatorController.x().whileTrue(IntakeCommands.undeploy(m_intake));
+        /*operatorController.y().whileTrue(IntakeCommands.deploy(m_intake));
+        operatorController.x().whileTrue(IntakeCommands.undeploy(m_intake));*/
     }
 
     public Command getAutonomousCommand() {
