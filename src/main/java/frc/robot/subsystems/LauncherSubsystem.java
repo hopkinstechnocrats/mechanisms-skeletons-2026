@@ -23,7 +23,7 @@ import frc.robot.TunableNumber;
       	NetworkTable table;
       	DoubleEntry LauncherPIDDifference; 
 		DoubleEntry LauncherMotorVoltage; 
-      	//DoubleEntry LauncherPIDDifferenceSecond; 
+      	DoubleEntry LauncherPIDDifferenceSecond; 
 		DoubleEntry LauncherMotorVoltageSecond; 
       	TalonFX m_launcherMotor;
         TalonFX m_launcherMotorSecond;
@@ -67,9 +67,9 @@ import frc.robot.TunableNumber;
             m_launcherMotor.getConfigurator().apply(m_launcherConfig);
 
 			LauncherMotorVoltage = table.getDoubleTopic("Motor Volatge").getEntry(0);
-			//LauncherMotorVoltageSecond = table.getDoubleTopic("Motor Volatge Second").getEntry(0);
+			LauncherMotorVoltageSecond = table.getDoubleTopic("Motor Volatge Second").getEntry(0);
             LauncherPIDDifference = table.getDoubleTopic("PID Difference").getEntry(0);
-            //LauncherPIDDifferenceSecond = table.getDoubleTopic("PID Difference Second").getEntry(0);
+            LauncherPIDDifferenceSecond = table.getDoubleTopic("PID Difference Second").getEntry(0);
 
             kPInputLauncher = new TunableNumber("/Tunable Numbers/kPInput Launcher", Constants.LauncherConstants.k_launcherP);
             kIInputLauncher = new TunableNumber("/Tunable Numbers/kIInput Launcher", Constants.LauncherConstants.k_launcherI);
@@ -81,11 +81,11 @@ import frc.robot.TunableNumber;
 		
 		@Override
     	public void periodic(){
-      	//	LauncherPIDDifferenceSecond.set(m_launcherMotorSecond.getClosedLoopError().getValueAsDouble());
+      		LauncherPIDDifferenceSecond.set(m_launcherMotorSecond.getClosedLoopError().getValueAsDouble());
       		LauncherPIDDifference.set(m_launcherMotor.getClosedLoopError().getValueAsDouble()); 
      		//difference between desired state and real state as a double
 			LauncherMotorVoltage.set(m_launcherMotor.getMotorVoltage().getValueAsDouble());
-			//LauncherMotorVoltageSecond.set(m_launcherMotorSecond.getMotorVoltage().getValueAsDouble());
+			LauncherMotorVoltageSecond.set(m_launcherMotorSecond.getMotorVoltage().getValueAsDouble());
             if(DriverStation.isTestEnabled() && kPInputLauncher.hasChanged(hashCode())){
                 m_launcherConfig.kP = kPInputLauncher.getAsDouble();
                 m_launcherMotor.getConfigurator().apply(m_launcherConfig);
