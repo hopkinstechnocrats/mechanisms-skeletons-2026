@@ -1,11 +1,9 @@
 package frc.robot.subsystems;
-
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.networktables.DoubleEntry;
 import edu.wpi.first.networktables.NetworkTable;
@@ -18,16 +16,21 @@ import frc.robot.TunableNumber;
 public class TurretSubsystem extends SubsystemBase {
     NetworkTableInstance inst;
     NetworkTable table;
+
     TalonFX m_turretMotor;
-    DoubleEntry TurretPIDDifference;
-    DoubleEntry TurretMotorVoltage; 
     Slot0Configs m_turretConfig;
     MotorOutputConfigs m_turretOutputConfig; 
+
+    DoubleEntry TurretPIDDifference;
+    DoubleEntry TurretMotorVoltage; 
+
+
     TunableNumber kPInputTurret;
     TunableNumber kIInputTurret;
     TunableNumber kDInputTurret;
     TunableNumber kSInputTurret;
     TunableNumber kVInputTurret;
+    
     final PositionVoltage m_turretRequest = new PositionVoltage(0).withSlot(0);
     
     public TurretSubsystem(){
